@@ -16,7 +16,7 @@ on:
           - true
           - false
       debug_mode:
-        description: "Your Description"
+        description: "Debug Mode"
         type: choice
         required: true
         default: 'false'
@@ -64,16 +64,8 @@ jobs:
         PYPROJECT_TOML_DIR: "."
       run: |
         cd ${PYPROJECT_TOML_DIR}
-        if ${RUN_ALL}; then
-          pytest
+        if ${DEBUG_MODE}; then
+          pytest -rP
         else
-          echo ${ALL_CHANGED_FILES}
-          declare -A arr
-          for file in ${ALL_CHANGED_FILES}; do
-            echo "$file was changed"
-            if [[ *.py == $file ]]; then
-              arr+=("$file/..")
-            fi
-          done
-          pytest ${arr[@]}
+          pytest -rx
         fi
