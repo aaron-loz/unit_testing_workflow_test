@@ -57,4 +57,4 @@ jobs:
       with:
         since_last_remote_commit: true
     - name: Test with pytest
-      uses: ./.github/workflows/unit_testing/python.yml
+      uses: ./.github/workflows/unit_testing/python/action.yml
