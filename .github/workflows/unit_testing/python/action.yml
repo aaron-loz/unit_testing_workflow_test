@@ -20,6 +20,7 @@ runs:
       env:
         DEBUG_MODE: ${{ inputs.debug_mode == 'true' }}
         PYPROJECT_TOML_DIR: ${{ inputs.pyproject_toml_dir }}
+      shell: bash
       run: |
         cd ${PYPROJECT_TOML_DIR}
         if ${DEBUG_MODE}; then
