@@ -67,6 +67,7 @@ jobs:
         if ${RUN_ALL}; then
           pytest
         else
+          echo ${ALL_CHANGED_FILES}
           for file in ${ALL_CHANGED_FILES}; do
             echo "$file was changed"
           done
