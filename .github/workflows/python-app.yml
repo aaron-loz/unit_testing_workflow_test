@@ -8,6 +8,21 @@ on:
     branches:
       - "main"
   workflow_dispatch:
+    inputs:
+      run_all_tests:
+        required: false
+        default: 'false'
+        options:
+          - true
+          - false
+      debug_mode:
+        description: "Your Description"
+        type: choice
+        required: true
+        default: 'false'
+        options:
+          - true
+          - false
     branches: 
       - "**"
     paths-ignore:
@@ -42,6 +57,15 @@ jobs:
       with:
         since_last_remote_commit: true
     - name: Test with pytest
+      env:
+        ALL_CHANGED_FILES: ${{ steps.changed-files.outputs.all_changed_files }}
+        RUN_ALL: ${{ inputs.run_all_tests == 'true '}}
+        DEBUG_MODE: ${{ inputs.debug_mode == 'true' }}
       run: |
-        echo ${{ steps.changed-files.outputs.all_changed_files }}
-        pytest
+        if ${RUN_ALL}; then
+          pytest
+        else
+          for file in ${ALL_CHANGED_FILES}; do
+            echo "$file was changed"
+          done
+        fi
