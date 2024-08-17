@@ -3,8 +3,8 @@ name: Python Unit Test
 inputs:
   pyproject_toml_dir:
     description: 'Do a build and verify'
-    required: false
-    default: 'true'
+    required: true
+    default: '.'
   debug_mode:
     description: "Debug Mode"
     required: false
