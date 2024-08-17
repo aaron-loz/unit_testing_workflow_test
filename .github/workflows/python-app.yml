@@ -58,3 +58,5 @@ jobs:
         since_last_remote_commit: true
     - name: Test with pytest
       uses: ./.github/workflows/unit_testing/python/
+      with:
+        pyproject_toml_dir: "."
