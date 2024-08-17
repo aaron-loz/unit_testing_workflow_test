@@ -68,7 +68,12 @@ jobs:
           pytest
         else
           echo ${ALL_CHANGED_FILES}
+          arr = ()
           for file in ${ALL_CHANGED_FILES}; do
             echo "$file was changed"
+            if [[ *.py == $file ]]; then
+              arr+=("$file/..")
+            fi
           done
+          pytest ${arr[@]}
         fi
