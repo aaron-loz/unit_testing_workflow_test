@@ -4,9 +4,12 @@
 name: Python application
 
 on:
+  push:
+    branches:
+      - "main"
   workflow_dispatch:
     branches: 
-      - "main"
+      - "**"
     paths-ignore:
       - '**.md'
   pull_request:
