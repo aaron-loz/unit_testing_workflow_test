@@ -8,4 +8,4 @@ class TestClass(unittest.TestCase):
 
     def test_two(self):
         x = "hello"
-        assert self.assertEqual(x, "hello")
+        self.assertEqual(x, "hello", f"{x} does not equal hello")
