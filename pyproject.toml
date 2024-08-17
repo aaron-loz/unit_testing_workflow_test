@@ -1,0 +1,5 @@
+[tool.pytest.ini_options]
+testpaths = [
+    "module/aws/lambda_code/actions_test",
+    "module/aws/lambda_code/another_test",
+]

@@ -61,7 +61,9 @@ jobs:
         ALL_CHANGED_FILES: ${{ steps.changed-files.outputs.all_changed_files }}
         RUN_ALL: ${{ inputs.run_all_tests == 'true '}}
         DEBUG_MODE: ${{ inputs.debug_mode == 'true' }}
+        PYPROJECT_TOML_DIR: ""
       run: |
+        cd ${PYPROJECT_TOML_DIR}
         if ${RUN_ALL}; then
           pytest
         else
