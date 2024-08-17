@@ -1,0 +1,32 @@
+name: Python Unit Test
+
+on:
+  workflow_dispatch:
+    inputs:
+      pyproject_toml_dir:
+        description: 'Do a build and verify'
+        required: false
+        default: 'true'
+      debug_mode:
+        description: "Debug Mode"
+        required: false
+        default: 'false'
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Test with pytest
+      env:
+        DEBUG_MODE: ${{ inputs.debug_mode == 'true' }}
+        PYPROJECT_TOML_DIR: ${{ inputs.pyproject_toml_dir }}
+      run: |
+        cd ${PYPROJECT_TOML_DIR}
+        if ${DEBUG_MODE}; then
+          pytest -rP
+        else
+          pytest -rx
+        fi

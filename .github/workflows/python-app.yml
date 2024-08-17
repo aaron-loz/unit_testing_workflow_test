@@ -57,15 +57,4 @@ jobs:
       with:
         since_last_remote_commit: true
     - name: Test with pytest
-      env:
-        ALL_CHANGED_FILES: ${{ steps.changed-files.outputs.all_changed_files }}
-        RUN_ALL: ${{ inputs.run_all_tests == 'true '}}
-        DEBUG_MODE: ${{ inputs.debug_mode == 'true' }}
-        PYPROJECT_TOML_DIR: "."
-      run: |
-        cd ${PYPROJECT_TOML_DIR}
-        if ${DEBUG_MODE}; then
-          pytest -rP
-        else
-          pytest -rx
-        fi
+      uses: ./.github/workflows/unit_testing/python.yml
