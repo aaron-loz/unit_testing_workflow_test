@@ -1,25 +1,21 @@
 name: Python Unit Test
 
-on:
-  workflow_dispatch:
-    inputs:
-      pyproject_toml_dir:
-        description: 'Do a build and verify'
-        required: false
-        default: 'true'
-      debug_mode:
-        description: "Debug Mode"
-        required: false
-        default: 'false'
+inputs:
+  pyproject_toml_dir:
+    description: 'Do a build and verify'
+    required: false
+    default: 'true'
+  debug_mode:
+    description: "Debug Mode"
+    required: false
+    default: 'false'
 
 permissions:
   contents: read
 
-jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v4
+runs:
+  using: 'composite'
+  steps:
     - name: Test with pytest
       env:
         DEBUG_MODE: ${{ inputs.debug_mode == 'true' }}
