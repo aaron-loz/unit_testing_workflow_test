@@ -28,3 +28,4 @@ runs:
         else
           pytest -rx
         fi
+        # TODO: add ability to junit output for reporting. add writing of log as well.
